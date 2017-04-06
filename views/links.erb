@@ -1,3 +1,6 @@
+<%if current_user%>
+<p>Welcome to bookmark manager <%=current_user.email%></p>
+<%end%>
 <h1> Links </h1>
 <ul id='url'>
   <% @links.each do |link| %>
