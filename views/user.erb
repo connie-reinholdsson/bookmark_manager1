@@ -1,23 +1,22 @@
-
 <form action='/user' method='post'>
+
   <label for='email'>
     Email:
-    <input type='text' name='email' value='<%= @user.email %>'>
+    <input type='text' name='email' value='<%= @user.email %>' required>
   </label>
-
-
-
-
 
   <label for='password'>
     Password:
     <input type='password' name='password'>
   </label>
+
   <label for='password_confirmation'>
     Password confirmation:
     <input type='password' name='password_confirmation'>
   </label>
+
   <input type='submit' value='Submit'>
+
 </form>
 
 <% if flash[:notice] %>
