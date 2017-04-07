@@ -1,6 +1,9 @@
 <%if current_user%>
 <p>Welcome to bookmark manager <%=current_user.email%></p>
 <%end%>
+
+
+<!-- If current user exists, put message, otherwise don't. -->
 <h1> Links </h1>
 <ul id='url'>
   <% @links.each do |link| %>
@@ -17,3 +20,5 @@
     </li>
   <% end %>
 </ul>
+
+<!-- tag.name is a method -->

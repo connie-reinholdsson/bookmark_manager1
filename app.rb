@@ -1,6 +1,5 @@
 ENV['RACK_ENV'] ||= 'development'
 
-
 require 'sinatra/base'
 require 'data_mapper'
 require_relative './data_mapper_setup'
@@ -10,7 +9,7 @@ require_relative 'models/user'
 
 class Bookmark < Sinatra::Base
 enable :sessions
-set :session_secret, 'super secret'
+set :session_secret, 'super secret' # What? Did we need this?
 
   get '/' do
     erb(:index)
@@ -19,7 +18,7 @@ set :session_secret, 'super secret'
 
   get '/links' do
     session[:id] ||= 0
-    @links = Link.all
+    @links = Link.all # Puts all the instances of link in @links
     @tags = Tag.all
     erb(:links)
   end
@@ -29,17 +28,17 @@ set :session_secret, 'super secret'
   end
 
   post '/links' do
-    link = Link.new(url: params[:url], name: params[:name])
-    tags = params[:tags]
-    tags = tags.split(", ")
+    link = Link.new(url: params[:url], name: params[:name]) # Name and URL
+    tags = params[:tags] # tags equal tags (different)
+    tags = tags.split(", ") # split the tags by comma
     tags.each {|tag| link.tags << Tag.first_or_create(:name => tag)}
     link.save
     redirect '/links'
   end
 
   get '/links/:tag' do
-    tag = Tag.first(:name => params[:tag])
-    @links = tag.links
+    tag = Tag.first(:name => params[:tag]) # Takes first tag in the database, from z
+    @links = tag.links # Takes all the links from that tag
     erb:links
   end
 
@@ -52,7 +51,6 @@ set :session_secret, 'super secret'
     session[:user_id] = user.id
     redirect '/links'
   end
-
 
   helpers do
      def current_user
