@@ -1,8 +1,14 @@
+
 <form action='/user' method='post'>
   <label for='email'>
     Email:
-    <input type='text' name='email'>
+    <input type='text' name='email' value='<%= @user.email %>'>
   </label>
+
+
+
+
+
   <label for='password'>
     Password:
     <input type='password' name='password'>
@@ -13,5 +19,11 @@
   </label>
   <input type='submit' value='Submit'>
 </form>
+
+<% if flash[:notice] %>
+<div id='notice'><%= flash[:notice] %></div>
+<% end %>
+
+
 
 <!-- Changed type 'text' to type 'password' -->

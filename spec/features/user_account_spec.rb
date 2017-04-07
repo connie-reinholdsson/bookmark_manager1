@@ -7,9 +7,9 @@ feature 'register' do
     expect(page).to have_content 'Welcome to bookmark manager alice@example.com' # Have the email.
   end
 
-
   scenario 'password confirmation' do
     expect {sign_up(password_confirmation: 'wrong')}.not_to change(User, :count)
+    expect(current_path).to eq('/user')
+    expect(page).to have_content 'Password and confirmation password do not match'
   end
-
 end
